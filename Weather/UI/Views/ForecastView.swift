@@ -70,6 +70,8 @@ private extension ForecastView {
             Text(model.weatherModel.forecastDescription)
             Text(model.temperatureModel.temperature)
             Text(model.temperatureModel.feelLike)
+            Text(model.temperatureModel.maxTemp)
+            Text(model.temperatureModel.minTemp)
         }
     }
 }

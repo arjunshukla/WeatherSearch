@@ -38,7 +38,7 @@ import Combine
         Task {
             do {
                 city = try await weatherAPIHelper.fetchGeocode(city: searchText, state: nil, country: nil)
-                print(city)
+                print(String(describing: city))
             } catch {
                 print("Error while fetching geocode info for seacrh term \(searchText):\n \(error.localizedDescription)")
             }
@@ -58,13 +58,26 @@ import Combine
                 let weatherData = try await weatherAPIHelper.fetchForecast(lat: lat, lon: lon)
                 weather = weatherData?.weather.first
                 temperatureData = weatherData?.main
-                print(weather)
+                print(String(describing: weather))
             } catch {
-                print("Error while fetching forecast for \(city?.name): \(error.localizedDescription)")
+                print("Error while fetching forecast for \(String(describing: city?.name)): \(error.localizedDescription)")
             }
         }
     }
     
+    func fetchForecast(lat: String, lon: String) {
+        Task {
+            do {
+                let weatherData = try await weatherAPIHelper.fetchForecast(lat: lat, lon: lon)
+                weather = weatherData?.weather.first
+                temperatureData = weatherData?.main
+                print(String(describing: weather))
+            } catch {
+                print("Error while fetching forecast for lat: \(lat), lon: \(lon) \n \(error.localizedDescription)")
+            }
+        }
+    }
+
     func createForecastModel() {
         guard let city = city,
               let weather = weather,
@@ -85,6 +98,6 @@ import Combine
         
         forecastModel = ForecastModel(showForecast: true, weatherModel: weatherModel, temperatureModel: temperatureModel)
 
-        print(forecastModel)
+        print(String(describing: forecastModel))
     }
 }

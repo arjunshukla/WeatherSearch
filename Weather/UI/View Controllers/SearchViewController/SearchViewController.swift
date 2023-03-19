@@ -6,6 +6,7 @@
 //
 
 import Combine
+import CoreLocation
 import Foundation
 import SwiftUI
 import UIKit
@@ -20,6 +21,10 @@ class SearchViewController: UIViewController, Storyboarded {
 
     private var cancellables = Set<AnyCancellable>()
     
+    private let locationManager = CLLocationManager()
+    
+    private var userLocation: CLLocationCoordinate2D?
+    
     @Published private var forecastModel: ForecastModel = {
         // Placeholder data
         let weatherModel = DisplayWeatherModel(cityName: "Fremont",
@@ -32,16 +37,18 @@ class SearchViewController: UIViewController, Storyboarded {
                                                        minTemp: "5",
                                                        maxTemp: "17")
         
-        return ForecastModel(showForecast: false,
+        return ForecastModel(showForecast: true,
                              weatherModel: weatherModel,
                              temperatureModel: temperatureModel)
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupLocationService()
         setupForecastView()
         setupSearchBarBinding()
         setupForecastBinding()
+        
     }
     
     private func setupSearchBarBinding() {
@@ -66,7 +73,7 @@ class SearchViewController: UIViewController, Storyboarded {
             .store(in: &cancellables)
     }
     
-    func setupForecastView() {
+    private func setupForecastView() {
         
         let forecastView = ForecastView(model: forecastModel)
         
@@ -82,6 +89,16 @@ class SearchViewController: UIViewController, Storyboarded {
                     hostingController.view.bottomAnchor.constraint(equalTo: forecastStackView.bottomAnchor)
                 ])
     }
+    
+    private func setupLocationService() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        
+        if userLocation == nil {
+            locationManager.startUpdatingLocation()
+        }
+    }
 }
 
 extension SearchViewController: UISearchBarDelegate {
@@ -89,5 +106,19 @@ extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar,
                    textDidChange searchText: String) {
         viewModel.searchText = searchText
+    }
+}
+
+extension SearchViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last,
+        userLocation == nil else { return }
+        
+        userLocation = location.coordinate
+        print("Latitude: \(location.coordinate.latitude)")
+        print("Longitude: \(location.coordinate.longitude)")
+        locationManager.stopUpdatingLocation()
+        // Do something with the user's location...
+        viewModel.fetchForecast(lat: String(location.coordinate.latitude), lon: String(location.coordinate.longitude))
     }
 }
