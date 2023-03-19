@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Search View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="SearchViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="SearchViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="oUk-hh-qv3">
+                                <rect key="frame" x="20" y="124" width="374" height="158.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome, search for a location to see its current weather forecast." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iYU-mk-MFz">
+                                        <rect key="frame" x="6" y="0.0" width="362.5" height="57.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
+                                        <color key="textColor" red="0.26503515239999997" green="0.68867015840000001" blue="0.70955783130000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <searchBar contentMode="redraw" placeholder="City, State, Country" translatesAutoresizingMaskIntoConstraints="NO" id="ji3-rg-s9i">
+                                        <rect key="frame" x="20.5" y="107.5" width="333" height="51"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="51" id="ue1-n7-MQJ"/>
+                                        </constraints>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="Y6W-OH-hqX" id="oij-eY-vBz"/>
+                                        </connections>
+                                    </searchBar>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="ji3-rg-s9i" firstAttribute="leading" secondItem="oUk-hh-qv3" secondAttribute="leading" constant="20.5" id="8iY-Hg-G0Q"/>
+                                    <constraint firstAttribute="bottom" secondItem="ji3-rg-s9i" secondAttribute="bottom" id="IaQ-KU-OJs"/>
+                                    <constraint firstAttribute="trailing" secondItem="ji3-rg-s9i" secondAttribute="trailing" constant="20.5" id="k29-XQ-N21"/>
+                                    <constraint firstItem="ji3-rg-s9i" firstAttribute="top" secondItem="iYU-mk-MFz" secondAttribute="bottom" constant="50" id="mQz-e7-zPr"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Kz4-0G-gkB">
+                                <rect key="frame" x="30" y="362.5" width="354" height="469.5"/>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Kz4-0G-gkB" secondAttribute="trailing" constant="30" id="8Uz-Qu-yVd"/>
+                            <constraint firstItem="Kz4-0G-gkB" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="30" id="8vH-mS-hDD"/>
+                            <constraint firstItem="oUk-hh-qv3" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="80" id="N4P-mx-KqB"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Kz4-0G-gkB" secondAttribute="bottom" constant="30" id="eKV-nI-oWT"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="oUk-hh-qv3" secondAttribute="trailing" constant="20" id="iJD-YX-ZI0"/>
+                            <constraint firstItem="oUk-hh-qv3" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="kjI-yZ-5hL"/>
+                            <constraint firstItem="Kz4-0G-gkB" firstAttribute="top" secondItem="oUk-hh-qv3" secondAttribute="bottom" constant="80" id="xMT-67-GhV"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="citySearchBar" destination="ji3-rg-s9i" id="Avy-Ir-vGp"/>
+                        <outlet property="forecastStackView" destination="Kz4-0G-gkB" id="yIx-zW-INs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-23.188405797101453" y="81.696428571428569"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
