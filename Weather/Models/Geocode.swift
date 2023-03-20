@@ -24,7 +24,6 @@ import Foundation
 
 struct City: Codable {
     let name: String
-    let localNames: LocalNames
     let latitude: Double
     let longitude: Double
     let country: String
@@ -32,16 +31,10 @@ struct City: Codable {
     
     private enum CodingKeys: String, CodingKey {
         case name
-        case localNames = "local_names"
         case latitude = "lat"
         case longitude = "lon"
         case country
         case state
     }
-}
-
-struct LocalNames: Codable {
-    let zh: String?
-    let en: String?
 }
 

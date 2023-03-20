@@ -30,7 +30,6 @@
 		F28F9B1729C637D20080F7B3 /* WeatherModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28F9B1629C637D20080F7B3 /* WeatherModels.swift */; };
 		F28F9B1929C63A450080F7B3 /* WeatherAPIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28F9B1829C63A450080F7B3 /* WeatherAPIHelper.swift */; };
 		F28F9B1C29C63B100080F7B3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F28F9B1B29C63B100080F7B3 /* CoreLocation.framework */; };
-		F28F9B1E29C63B3B0080F7B3 /* LocationAPIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28F9B1D29C63B3B0080F7B3 /* LocationAPIHelper.swift */; };
 		F28F9B2029C63C9E0080F7B3 /* ForecastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28F9B1F29C63C9E0080F7B3 /* ForecastView.swift */; };
 /* End PBXBuildFile section */
 
@@ -79,7 +78,6 @@
 		F28F9B1629C637D20080F7B3 /* WeatherModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModels.swift; sourceTree = "<group>"; };
 		F28F9B1829C63A450080F7B3 /* WeatherAPIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPIHelper.swift; sourceTree = "<group>"; };
 		F28F9B1B29C63B100080F7B3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		F28F9B1D29C63B3B0080F7B3 /* LocationAPIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationAPIHelper.swift; sourceTree = "<group>"; };
 		F28F9B1F29C63C9E0080F7B3 /* ForecastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -216,7 +214,6 @@
 			isa = PBXGroup;
 			children = (
 				F28F9B1829C63A450080F7B3 /* WeatherAPIHelper.swift */,
-				F28F9B1D29C63B3B0080F7B3 /* LocationAPIHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -416,7 +413,6 @@
 				F28F9B1129C635940080F7B3 /* SearchViewControllerViewModel.swift in Sources */,
 				F27C23C9284532D600A4DA41 /* Cache.swift in Sources */,
 				F28F9B1929C63A450080F7B3 /* WeatherAPIHelper.swift in Sources */,
-				F28F9B1E29C63B3B0080F7B3 /* LocationAPIHelper.swift in Sources */,
 				F27C23D6284578C300A4DA41 /* Date+Extensions.swift in Sources */,
 				F254EE672844D0D900D6E671 /* AppDelegate.swift in Sources */,
 				F28F9B1529C636510080F7B3 /* Geocode.swift in Sources */,

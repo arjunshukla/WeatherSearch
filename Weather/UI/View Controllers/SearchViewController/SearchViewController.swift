@@ -17,6 +17,9 @@ class SearchViewController: UIViewController, Storyboarded {
     
     @IBOutlet private weak var forecastStackView: UIStackView!
     
+    private var hostingController: UIHostingController<ForecastView>?
+    private var forecastView: ForecastView?
+
     private var viewModel = SearchViewModel(apiService: WeatherAPIHelper())
 
     private var cancellables = Set<AnyCancellable>()
@@ -25,30 +28,13 @@ class SearchViewController: UIViewController, Storyboarded {
     
     private var userLocation: CLLocationCoordinate2D?
     
-    @Published private var forecastModel: ForecastModel = {
-        // Placeholder data
-        let weatherModel = DisplayWeatherModel(cityName: "Fremont",
-                                               mainForecast: "Clouds",
-                                               forecastDescription: "Overcast clouds",
-                                               forecastIconUrl: URL(string: "https://openweathermap.org/img/wn/10d@2x.png")!)
-        
-        let temperatureModel = DisplayTemperatureModel(temperature: "15",
-                                                       feelLike: "12",
-                                                       minTemp: "5",
-                                                       maxTemp: "17")
-        
-        return ForecastModel(showForecast: true,
-                             weatherModel: weatherModel,
-                             temperatureModel: temperatureModel)
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupLocationService()
-        setupForecastView()
+
         setupSearchBarBinding()
         setupForecastBinding()
         
+        setupLocationService()        
     }
     
     private func setupSearchBarBinding() {
@@ -66,19 +52,30 @@ class SearchViewController: UIViewController, Storyboarded {
     private func setupForecastBinding() {
         viewModel.$forecastModel
             .sink { [weak self] model in
-                if let model = model {
-                    self?.forecastModel = model
+                guard let self = self,
+                      let model = model else { return }
+
+                DispatchQueue.main.async {
+                    self.hostingController == nil ? self.setupForecastView(forecastModel: model) : self.updateForecastView(forecastModel: model)
                 }
             }
             .store(in: &cancellables)
     }
     
-    private func setupForecastView() {
+    private func updateForecastView(forecastModel: ForecastModel) {
+        forecastView = ForecastView(model: forecastModel)
+        hostingController?.rootView = forecastView!
+//        hostingController = UIHostingController(rootView: forecastView!)
+    }
+    
+    private func setupForecastView(forecastModel: ForecastModel) {
         
-        let forecastView = ForecastView(model: forecastModel)
+        forecastView = ForecastView(model: forecastModel)
         
-        let hostingController = UIHostingController(rootView: forecastView)
+        hostingController = UIHostingController(rootView: forecastView!)
         
+        guard let hostingController = hostingController else { return }
+
         forecastStackView.addArrangedSubview(hostingController.view)
         
         hostingController.view.translatesAutoresizingMaskIntoConstraints = false
@@ -118,7 +115,9 @@ extension SearchViewController: CLLocationManagerDelegate {
         print("Latitude: \(location.coordinate.latitude)")
         print("Longitude: \(location.coordinate.longitude)")
         locationManager.stopUpdatingLocation()
-        // Do something with the user's location...
+        
+        // Fetch weather forecast for user's location
+        
         viewModel.fetchForecast(lat: String(location.coordinate.latitude), lon: String(location.coordinate.longitude))
     }
 }

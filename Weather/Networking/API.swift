@@ -7,11 +7,6 @@
 
 import Foundation
 
-enum Result<T> {
-    case success(T)
-    case failure(Error)
-}
-
 class API {
     typealias completion = (Data?, URLResponse?, Error?) -> Void
     private static let apiKey = "4c79191af041154a917fc3ec8d3de430"

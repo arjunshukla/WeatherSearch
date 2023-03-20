@@ -8,23 +8,15 @@
 import Foundation
 import Combine
 
-@MainActor final class SearchViewModel {
+final class SearchViewModel {
     
     @Published var searchText = ""
-    
-    @Published var weather: Weather? {
-        didSet {
-            createForecastModel()
-        }
-    }
-    
+
     @Published var forecastModel: ForecastModel?
 
-    @Published var city: City? {
-        didSet {
-            fetchForecast()
-        }
-    }
+    private var weather: Weather?
+    private var city: City?
+    private var cityName: String?
     private var temperatureData: Main?
     private var weatherAPIHelper: SomeWeatherService
     
@@ -33,32 +25,31 @@ import Combine
     }
     
     func executeSearch() {
+        guard !searchText.isEmpty else { return }
         // Perform the search with the given search text
-        print("Searching for \(searchText)")
+        print("Searching for: \(searchText)")
         Task {
             do {
                 city = try await weatherAPIHelper.fetchGeocode(city: searchText, state: nil, country: nil)
                 print(String(describing: city))
+                
+                fetchForecast()
             } catch {
                 print("Error while fetching geocode info for seacrh term \(searchText):\n \(error.localizedDescription)")
             }
         }
     }
     
-    func fetchForecast() {
+    private func fetchForecast() {
         Task {
             do {
-                guard let city = city else {
-                    return
-                }
+                guard let city = city else { return }
 
                 let lat = String(city.latitude)
                 let lon = String(city.longitude)
 
                 let weatherData = try await weatherAPIHelper.fetchForecast(lat: lat, lon: lon)
-                weather = weatherData?.weather.first
-                temperatureData = weatherData?.main
-                print(String(describing: weather))
+                extractForecastData(from: weatherData)
             } catch {
                 print("Error while fetching forecast for \(String(describing: city?.name)): \(error.localizedDescription)")
             }
@@ -69,23 +60,34 @@ import Combine
         Task {
             do {
                 let weatherData = try await weatherAPIHelper.fetchForecast(lat: lat, lon: lon)
-                weather = weatherData?.weather.first
-                temperatureData = weatherData?.main
-                print(String(describing: weather))
+                extractForecastData(from: weatherData)
             } catch {
                 print("Error while fetching forecast for lat: \(lat), lon: \(lon) \n \(error.localizedDescription)")
             }
         }
     }
 
-    func createForecastModel() {
-        guard let city = city,
+    private func extractForecastData(from weatherData: WeatherData?) {
+        guard let weatherData = weatherData else { return }
+
+        weather = weatherData.weather.first
+        temperatureData = weatherData.main
+        cityName = weatherData.name
+        print(String(describing: weather))
+        createForecastModel()
+    }
+
+    private func createForecastModel() {
+        guard let cityName = cityName,
               let weather = weather,
               let temperature = temperatureData
-        else { return }
+        else {
+            print("Missing key data")
+            return
+        }
         
         let weatherModel = DisplayWeatherModel(
-            cityName: city.name,
+            cityName: cityName,
             mainForecast: weather.main,
             forecastDescription: weather.description,
             forecastIconUrl: API.getForecastIconUrl(iconCode: weather.icon))
@@ -98,6 +100,6 @@ import Combine
         
         forecastModel = ForecastModel(showForecast: true, weatherModel: weatherModel, temperatureModel: temperatureModel)
 
-        print(String(describing: forecastModel))
+        print("New forecastModel: ", String(describing: forecastModel))
     }
 }
