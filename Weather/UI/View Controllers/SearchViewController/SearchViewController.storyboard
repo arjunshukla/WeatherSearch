@@ -16,8 +16,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="oUk-hh-qv3">
-                                <rect key="frame" x="20" y="74" width="374" height="158.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="oUk-hh-qv3">
+                                <rect key="frame" x="20" y="74" width="374" height="143.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome, search for a location to see its current weather forecast." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iYU-mk-MFz">
                                         <rect key="frame" x="6" y="0.0" width="362.5" height="57.5"/>
@@ -26,10 +26,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="City, State, Country" translatesAutoresizingMaskIntoConstraints="NO" id="ji3-rg-s9i">
-                                        <rect key="frame" x="20.5" y="107.5" width="333" height="51"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="51" id="ue1-n7-MQJ"/>
-                                        </constraints>
+                                        <rect key="frame" x="0.0" y="92.5" width="374" height="51"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
                                             <outlet property="delegate" destination="Y6W-OH-hqX" id="oij-eY-vBz"/>
@@ -37,14 +34,14 @@
                                     </searchBar>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="ji3-rg-s9i" firstAttribute="leading" secondItem="oUk-hh-qv3" secondAttribute="leading" constant="20.5" id="8iY-Hg-G0Q"/>
+                                    <constraint firstItem="ji3-rg-s9i" firstAttribute="leading" secondItem="oUk-hh-qv3" secondAttribute="leading" id="8iY-Hg-G0Q"/>
                                     <constraint firstAttribute="bottom" secondItem="ji3-rg-s9i" secondAttribute="bottom" id="IaQ-KU-OJs"/>
-                                    <constraint firstAttribute="trailing" secondItem="ji3-rg-s9i" secondAttribute="trailing" constant="20.5" id="k29-XQ-N21"/>
-                                    <constraint firstItem="ji3-rg-s9i" firstAttribute="top" secondItem="iYU-mk-MFz" secondAttribute="bottom" constant="50" id="mQz-e7-zPr"/>
+                                    <constraint firstAttribute="trailing" secondItem="ji3-rg-s9i" secondAttribute="trailing" id="k29-XQ-N21"/>
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Kz4-0G-gkB">
-                                <rect key="frame" x="30" y="262.5" width="354" height="569.5"/>
+                                <rect key="frame" x="30" y="247.5" width="354" height="584.5"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>

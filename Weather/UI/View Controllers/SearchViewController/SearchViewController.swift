@@ -33,8 +33,7 @@ class SearchViewController: UIViewController, Storyboarded {
 
         setupSearchBarBinding()
         setupForecastBinding()
-        
-        setupLocationService()        
+        setupLocationService()
     }
     
     private func setupSearchBarBinding() {
@@ -44,6 +43,9 @@ class SearchViewController: UIViewController, Storyboarded {
             // Set the font of the text field
             textField.font = UIFont.systemFont(ofSize: 25)
         }
+        
+        citySearchBar.layer.cornerRadius = 20
+        citySearchBar.clipsToBounds = true
         // Bind the view model's searchText property to the search bar
         viewModel.$searchText
             .debounce(for: .milliseconds(700), scheduler: RunLoop.main)

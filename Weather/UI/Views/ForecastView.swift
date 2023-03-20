@@ -5,6 +5,7 @@
 //  Created by Arjun Shukla on 3/18/23.
 //
 
+import CachedAsyncImage
 import SwiftUI
 
 struct DisplayTemperatureModel {
@@ -66,7 +67,7 @@ struct ForecastView: View {
 
 private extension ForecastView {
     var forecastImage: some View {
-        AsyncImage(url: model.weatherModel.forecastIconUrl) { image in
+        CachedAsyncImage(url: model.weatherModel.forecastIconUrl, urlCache: .imageCache) { image in
             image
                 .resizable()
                 .frame(width: 100, height: 100, alignment: .center)
