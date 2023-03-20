@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		F215650B29C767C30020007D /* NoForecastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F215650A29C767C30020007D /* NoForecastView.swift */; };
+		F215650D29C812D20020007D /* KeyValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F215650C29C812D20020007D /* KeyValueView.swift */; };
+		F215650F29C8175D0020007D /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F215650E29C8175D0020007D /* Double+Extension.swift */; };
+		F215651129C81B620020007D /* String+Entension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F215651029C81B610020007D /* String+Entension.swift */; };
 		F254EE672844D0D900D6E671 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F254EE662844D0D900D6E671 /* AppDelegate.swift */; };
 		F254EE692844D0D900D6E671 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F254EE682844D0D900D6E671 /* SceneDelegate.swift */; };
 		F254EE702844D0DE00D6E671 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F254EE6F2844D0DE00D6E671 /* Assets.xcassets */; };
@@ -21,7 +24,6 @@
 		F27C23C52845317E00A4DA41 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F27C23C32845317E00A4DA41 /* Main.storyboard */; };
 		F27C23C72845324800A4DA41 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27C23C62845324800A4DA41 /* API.swift */; };
 		F27C23C9284532D600A4DA41 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27C23C8284532D600A4DA41 /* Cache.swift */; };
-		F27C23D6284578C300A4DA41 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27C23D5284578C300A4DA41 /* Date+Extensions.swift */; };
 		F27C23DA2845DD4400A4DA41 /* ListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27C23D92845DD4400A4DA41 /* ListViewModelTests.swift */; };
 		F28F9B0F29C635670080F7B3 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28F9B0E29C635670080F7B3 /* SearchViewController.swift */; };
 		F28F9B1129C635940080F7B3 /* SearchViewControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28F9B1029C635940080F7B3 /* SearchViewControllerViewModel.swift */; };
@@ -52,6 +54,9 @@
 
 /* Begin PBXFileReference section */
 		F215650A29C767C30020007D /* NoForecastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoForecastView.swift; sourceTree = "<group>"; };
+		F215650C29C812D20020007D /* KeyValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyValueView.swift; sourceTree = "<group>"; };
+		F215650E29C8175D0020007D /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
+		F215651029C81B610020007D /* String+Entension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Entension.swift"; sourceTree = "<group>"; };
 		F254EE632844D0D900D6E671 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F254EE662844D0D900D6E671 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F254EE682844D0D900D6E671 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,7 +74,6 @@
 		F27C23C42845317E00A4DA41 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F27C23C62845324800A4DA41 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		F27C23C8284532D600A4DA41 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
-		F27C23D5284578C300A4DA41 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		F27C23D92845DD4400A4DA41 /* ListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModelTests.swift; sourceTree = "<group>"; };
 		F28F9B0E29C635670080F7B3 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		F28F9B1029C635940080F7B3 /* SearchViewControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewControllerViewModel.swift; sourceTree = "<group>"; };
@@ -205,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				F28F9B1F29C63C9E0080F7B3 /* ForecastView.swift */,
+				F215650C29C812D20020007D /* KeyValueView.swift */,
 				F215650A29C767C30020007D /* NoForecastView.swift */,
 			);
 			path = Views;
@@ -221,7 +226,8 @@
 		F254EEA02844D3CA00D6E671 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				F27C23D5284578C300A4DA41 /* Date+Extensions.swift */,
+				F215650E29C8175D0020007D /* Double+Extension.swift */,
+				F215651029C81B610020007D /* String+Entension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -412,8 +418,10 @@
 				F254EEA32844D48000D6E671 /* MainCoordinator.swift in Sources */,
 				F28F9B1129C635940080F7B3 /* SearchViewControllerViewModel.swift in Sources */,
 				F27C23C9284532D600A4DA41 /* Cache.swift in Sources */,
+				F215651129C81B620020007D /* String+Entension.swift in Sources */,
+				F215650D29C812D20020007D /* KeyValueView.swift in Sources */,
+				F215650F29C8175D0020007D /* Double+Extension.swift in Sources */,
 				F28F9B1929C63A450080F7B3 /* WeatherAPIHelper.swift in Sources */,
-				F27C23D6284578C300A4DA41 /* Date+Extensions.swift in Sources */,
 				F254EE672844D0D900D6E671 /* AppDelegate.swift in Sources */,
 				F28F9B1529C636510080F7B3 /* Geocode.swift in Sources */,
 				F28F9B1729C637D20080F7B3 /* WeatherModels.swift in Sources */,

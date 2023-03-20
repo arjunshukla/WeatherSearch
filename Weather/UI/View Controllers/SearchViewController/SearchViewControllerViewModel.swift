@@ -89,14 +89,14 @@ final class SearchViewModel {
         let weatherModel = DisplayWeatherModel(
             cityName: cityName,
             mainForecast: weather.main,
-            forecastDescription: weather.description,
+            forecastDescription: weather.description.sentenceCased,
             forecastIconUrl: API.getForecastIconUrl(iconCode: weather.icon))
         
         let temperatureModel = DisplayTemperatureModel(
-            temperature: String(temperature.temp),
-            feelLike: String(temperature.feels_like),
-            minTemp: String(temperature.temp_min),
-            maxTemp: String(temperature.temp_max))
+            temperature: temperature.temp.imperialTemperature,
+            feelLike: temperature.feels_like.imperialTemperature,
+            minTemp: temperature.temp_min.imperialTemperature,
+            maxTemp: temperature.temp_max.imperialTemperature)
         
         forecastModel = ForecastModel(showForecast: true, weatherModel: weatherModel, temperatureModel: temperatureModel)
 

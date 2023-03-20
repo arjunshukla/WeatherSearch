@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="oUk-hh-qv3">
-                                <rect key="frame" x="20" y="124" width="374" height="158.5"/>
+                                <rect key="frame" x="20" y="74" width="374" height="158.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome, search for a location to see its current weather forecast." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iYU-mk-MFz">
                                         <rect key="frame" x="6" y="0.0" width="362.5" height="57.5"/>
@@ -25,7 +25,7 @@
                                         <color key="textColor" red="0.26503515239999997" green="0.68867015840000001" blue="0.70955783130000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <searchBar contentMode="redraw" placeholder="City, State, Country" translatesAutoresizingMaskIntoConstraints="NO" id="ji3-rg-s9i">
+                                    <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="City, State, Country" translatesAutoresizingMaskIntoConstraints="NO" id="ji3-rg-s9i">
                                         <rect key="frame" x="20.5" y="107.5" width="333" height="51"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="51" id="ue1-n7-MQJ"/>
@@ -44,7 +44,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Kz4-0G-gkB">
-                                <rect key="frame" x="30" y="362.5" width="354" height="469.5"/>
+                                <rect key="frame" x="30" y="262.5" width="354" height="569.5"/>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
@@ -52,11 +52,11 @@
                         <constraints>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Kz4-0G-gkB" secondAttribute="trailing" constant="30" id="8Uz-Qu-yVd"/>
                             <constraint firstItem="Kz4-0G-gkB" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="30" id="8vH-mS-hDD"/>
-                            <constraint firstItem="oUk-hh-qv3" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="80" id="N4P-mx-KqB"/>
+                            <constraint firstItem="oUk-hh-qv3" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="30" id="N4P-mx-KqB"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Kz4-0G-gkB" secondAttribute="bottom" constant="30" id="eKV-nI-oWT"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="oUk-hh-qv3" secondAttribute="trailing" constant="20" id="iJD-YX-ZI0"/>
                             <constraint firstItem="oUk-hh-qv3" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="kjI-yZ-5hL"/>
-                            <constraint firstItem="Kz4-0G-gkB" firstAttribute="top" secondItem="oUk-hh-qv3" secondAttribute="bottom" constant="80" id="xMT-67-GhV"/>
+                            <constraint firstItem="Kz4-0G-gkB" firstAttribute="top" secondItem="oUk-hh-qv3" secondAttribute="bottom" constant="30" id="xMT-67-GhV"/>
                         </constraints>
                     </view>
                     <connections>

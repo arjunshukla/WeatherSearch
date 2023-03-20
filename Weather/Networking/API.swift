@@ -13,9 +13,11 @@ class API {
     private static let baseWeatherUrlString = "https://api.openweathermap.org/data/2.5/weather"
     private static let baseGeocodeUrlString = "http://api.openweathermap.org/geo/1.0/direct"
     private static let baseIconDownloadUrlString = "https://openweathermap.org/img/wn/"
-
+    private static let imperial = "imperial"
+    
     private static let lat = "lat"
     private static let lon = "lon"
+    private static let units = "units"
     private static let appid = "appid"
 
     static func getForecastUrl(latitude: String, longitude: String) -> URL? {
@@ -26,6 +28,7 @@ class API {
             let queryItems = [
                 URLQueryItem(name: lat, value: latitude),
                 URLQueryItem(name: lon, value: longitude),
+                URLQueryItem(name: units, value: imperial),
                 URLQueryItem(name: appid, value: apiKey)
             ]
             

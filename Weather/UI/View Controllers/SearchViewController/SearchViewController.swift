@@ -39,7 +39,11 @@ class SearchViewController: UIViewController, Storyboarded {
     
     private func setupSearchBarBinding() {
         citySearchBar.translatesAutoresizingMaskIntoConstraints = false
-        
+        // Get the search bar's text field
+        if let textField = citySearchBar.value(forKey: "searchField") as? UITextField {
+            // Set the font of the text field
+            textField.font = UIFont.systemFont(ofSize: 25)
+        }
         // Bind the view model's searchText property to the search bar
         viewModel.$searchText
             .debounce(for: .milliseconds(700), scheduler: RunLoop.main)

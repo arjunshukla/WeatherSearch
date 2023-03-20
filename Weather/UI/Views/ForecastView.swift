@@ -54,10 +54,12 @@ struct ForecastView: View {
                 if model.showForecast {
                     forecastImage
                     forecast
+                    temperatureSection
                 } else {
                     NoForecastView()
                 }
             }
+            .padding()
         }
     }
 }
@@ -66,8 +68,14 @@ private extension ForecastView {
     var forecastImage: some View {
         AsyncImage(url: model.weatherModel.forecastIconUrl) { image in
             image
+                .resizable()
+                .frame(width: 100, height: 100, alignment: .center)
+                .padding()
         } placeholder: {
-            Image("placeholder_forecast")
+            Image("no_forecast")
+                .resizable()
+                .frame(width: 100, height: 100, alignment: .center)
+                .padding()
         }
     }
     
@@ -76,11 +84,17 @@ private extension ForecastView {
             Text(model.weatherModel.cityName)
             Text(model.weatherModel.mainForecast)
             Text(model.weatherModel.forecastDescription)
-            Text(model.temperatureModel.temperature)
-            Text(model.temperatureModel.feelLike)
-            Text(model.temperatureModel.maxTemp)
-            Text(model.temperatureModel.minTemp)
         }
+        .padding()
+    }
+    
+    var temperatureSection: some View {
+        VStack(alignment: .center) {
+            KeyValueView(key: "Current : ", value: model.temperatureModel.temperature)
+            KeyValueView(key: "Feels like : ", value: model.temperatureModel.feelLike)
+            KeyValueView(key: "Max : ", value: model.temperatureModel.maxTemp)
+            KeyValueView(key: "Min : ", value: model.temperatureModel.minTemp)
+        }.padding()
     }
 }
 
