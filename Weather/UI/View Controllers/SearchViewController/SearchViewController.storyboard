@@ -43,14 +43,35 @@
                                 <rect key="frame" x="30" y="247.5" width="354" height="584.5"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                             </stackView>
+                            <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cBc-Hu-PyW">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="y9o-xv-eRQ">
+                                        <rect key="frame" x="172" y="413" width="70" height="70"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="70" id="8Kz-tP-eh6"/>
+                                            <constraint firstAttribute="width" constant="70" id="DqR-hQ-h9m"/>
+                                        </constraints>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.3398840767996652" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="y9o-xv-eRQ" firstAttribute="centerY" secondItem="cBc-Hu-PyW" secondAttribute="centerY" id="WPR-bh-IIk"/>
+                                    <constraint firstItem="y9o-xv-eRQ" firstAttribute="centerX" secondItem="cBc-Hu-PyW" secondAttribute="centerX" id="yJc-RY-He4"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <constraints>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Kz4-0G-gkB" secondAttribute="trailing" constant="30" id="8Uz-Qu-yVd"/>
                             <constraint firstItem="Kz4-0G-gkB" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="30" id="8vH-mS-hDD"/>
+                            <constraint firstItem="cBc-Hu-PyW" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="EyT-Rm-7UQ"/>
                             <constraint firstItem="oUk-hh-qv3" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="30" id="N4P-mx-KqB"/>
+                            <constraint firstAttribute="bottom" secondItem="cBc-Hu-PyW" secondAttribute="bottom" id="YGF-pZ-WIY"/>
+                            <constraint firstItem="cBc-Hu-PyW" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="dEQ-uC-nQT"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Kz4-0G-gkB" secondAttribute="bottom" constant="30" id="eKV-nI-oWT"/>
+                            <constraint firstItem="cBc-Hu-PyW" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="fpJ-6y-D8b"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="oUk-hh-qv3" secondAttribute="trailing" constant="20" id="iJD-YX-ZI0"/>
                             <constraint firstItem="oUk-hh-qv3" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="kjI-yZ-5hL"/>
                             <constraint firstItem="Kz4-0G-gkB" firstAttribute="top" secondItem="oUk-hh-qv3" secondAttribute="bottom" constant="30" id="xMT-67-GhV"/>
@@ -59,6 +80,8 @@
                     <connections>
                         <outlet property="citySearchBar" destination="ji3-rg-s9i" id="Avy-Ir-vGp"/>
                         <outlet property="forecastStackView" destination="Kz4-0G-gkB" id="yIx-zW-INs"/>
+                        <outlet property="loadingView" destination="cBc-Hu-PyW" id="Uum-fw-0fe"/>
+                        <outlet property="spinner" destination="y9o-xv-eRQ" id="wr0-bR-Wp7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

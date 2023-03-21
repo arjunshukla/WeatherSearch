@@ -11,7 +11,7 @@ import Combine
 final class SearchViewModel {
     
     @Published var searchText = ""
-
+    @Published var isLoading = false
     @Published var forecastModel: ForecastModel?
 
     private var weather: Weather?
@@ -30,11 +30,13 @@ final class SearchViewModel {
         print("Searching for: \(searchText)")
         Task {
             do {
+                isLoading = true
                 city = try await weatherAPIHelper.fetchGeocode(city: searchText, state: nil, country: nil)
                 print(String(describing: city))
-                
+                isLoading = false
                 fetchForecast()
             } catch {
+                isLoading = false
                 print("Error while fetching geocode info for seacrh term \(searchText):\n \(error.localizedDescription)")
             }
         }
@@ -48,9 +50,16 @@ final class SearchViewModel {
                 let lat = String(city.latitude)
                 let lon = String(city.longitude)
 
+                UserDefaults.standard.set(lat, forKey: UserDefaultKeys.latitude)
+                UserDefaults.standard.set(lon, forKey: UserDefaultKeys.longitude)
+                
+                isLoading = true
+                
                 let weatherData = try await weatherAPIHelper.fetchForecast(lat: lat, lon: lon)
+                isLoading = false
                 extractForecastData(from: weatherData)
             } catch {
+                isLoading = false
                 print("Error while fetching forecast for \(String(describing: city?.name)): \(error.localizedDescription)")
             }
         }
@@ -59,9 +68,12 @@ final class SearchViewModel {
     func fetchForecast(lat: String, lon: String) {
         Task {
             do {
+                isLoading = true
                 let weatherData = try await weatherAPIHelper.fetchForecast(lat: lat, lon: lon)
+                isLoading = false
                 extractForecastData(from: weatherData)
             } catch {
+                isLoading = false
                 print("Error while fetching forecast for lat: \(lat), lon: \(lon) \n \(error.localizedDescription)")
             }
         }

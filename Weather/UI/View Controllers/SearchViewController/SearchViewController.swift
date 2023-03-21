@@ -17,6 +17,10 @@ class SearchViewController: UIViewController, Storyboarded {
     
     @IBOutlet private weak var forecastStackView: UIStackView!
     
+    @IBOutlet private weak var loadingView: UIView!
+    
+    @IBOutlet private weak var spinner: UIActivityIndicatorView!
+    
     private var hostingController: UIHostingController<ForecastView>?
     private var forecastView: ForecastView?
 
@@ -30,12 +34,23 @@ class SearchViewController: UIViewController, Storyboarded {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setupSpinnerBinding()
         setupSearchBarBinding()
         setupForecastBinding()
         setupLocationService()
     }
     
+    private func setupSpinnerBinding() {
+        viewModel.$isLoading
+            .sink { [weak self] isLoading in
+                DispatchQueue.main.async {
+                    self?.loadingView.isHidden = !isLoading
+                    isLoading ? self?.spinner.startAnimating() : self?.spinner.stopAnimating()
+                }
+            }
+            .store(in: &cancellables)
+    }
+
     private func setupSearchBarBinding() {
         citySearchBar.translatesAutoresizingMaskIntoConstraints = false
         // Get the search bar's text field
@@ -123,7 +138,15 @@ extension SearchViewController: CLLocationManagerDelegate {
         locationManager.stopUpdatingLocation()
         
         // Fetch weather forecast for user's location
+//        Ad use defaukst here
         
-        viewModel.fetchForecast(lat: String(location.coordinate.latitude), lon: String(location.coordinate.longitude))
+        if let lat = UserDefaults.standard.string(forKey: UserDefaultKeys.latitude),
+           let lon = UserDefaults.standard.string(forKey: UserDefaultKeys.longitude) {
+            viewModel.fetchForecast(lat: lat,
+                                    lon: lon)
+        } else {
+            viewModel.fetchForecast(lat: String(location.coordinate.latitude),
+                                    lon: String(location.coordinate.longitude))
+        }
     }
 }
