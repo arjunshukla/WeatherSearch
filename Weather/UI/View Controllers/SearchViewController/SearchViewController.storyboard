@@ -25,19 +25,42 @@
                                         <color key="textColor" red="0.26503515239999997" green="0.68867015840000001" blue="0.70955783130000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="City, State, Country" translatesAutoresizingMaskIntoConstraints="NO" id="ji3-rg-s9i">
-                                        <rect key="frame" x="0.0" y="92.5" width="374" height="51"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="Y6W-OH-hqX" id="oij-eY-vBz"/>
-                                        </connections>
-                                    </searchBar>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fPQ-Oa-WQv">
+                                        <rect key="frame" x="32" y="92.5" width="310" height="51"/>
+                                        <subviews>
+                                            <searchBar clearsContextBeforeDrawing="NO" contentMode="redraw" searchBarStyle="minimal" placeholder="City, State, Country" translatesAutoresizingMaskIntoConstraints="NO" id="ji3-rg-s9i">
+                                                <rect key="frame" x="0.0" y="0.0" width="250" height="51"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="250" id="Pga-Qg-eEn"/>
+                                                    <constraint firstAttribute="height" constant="51" id="aV6-EO-ZbA"/>
+                                                </constraints>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="oij-eY-vBz"/>
+                                                </connections>
+                                            </searchBar>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yC8-z8-fZs">
+                                                <rect key="frame" x="260" y="0.5" width="50" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="u1R-OG-LRR"/>
+                                                    <constraint firstAttribute="width" constant="50" id="ztK-2j-r41"/>
+                                                </constraints>
+                                                <color key="tintColor" red="0.26300564409999999" green="0.68940287830000002" blue="0.16468861700000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="location.magnifyingglass" catalog="system"/>
+                                                <connections>
+                                                    <action selector="onCurrentLocationButtonTap:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="B1y-TP-hQt"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="ji3-rg-s9i" firstAttribute="top" secondItem="fPQ-Oa-WQv" secondAttribute="top" id="cCB-1N-9K6"/>
+                                            <constraint firstAttribute="bottom" secondItem="ji3-rg-s9i" secondAttribute="bottom" id="df4-6F-Uue"/>
+                                            <constraint firstItem="yC8-z8-fZs" firstAttribute="leading" secondItem="ji3-rg-s9i" secondAttribute="trailing" constant="10" id="iHf-xY-Z0U"/>
+                                            <constraint firstItem="ji3-rg-s9i" firstAttribute="leading" secondItem="fPQ-Oa-WQv" secondAttribute="leading" id="vcL-PM-XpE"/>
+                                        </constraints>
+                                    </stackView>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstItem="ji3-rg-s9i" firstAttribute="leading" secondItem="oUk-hh-qv3" secondAttribute="leading" id="8iY-Hg-G0Q"/>
-                                    <constraint firstAttribute="bottom" secondItem="ji3-rg-s9i" secondAttribute="bottom" id="IaQ-KU-OJs"/>
-                                    <constraint firstAttribute="trailing" secondItem="ji3-rg-s9i" secondAttribute="trailing" id="k29-XQ-N21"/>
-                                </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Kz4-0G-gkB">
                                 <rect key="frame" x="30" y="247.5" width="354" height="584.5"/>
@@ -90,6 +113,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="location.magnifyingglass" catalog="system" width="128" height="115"/>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

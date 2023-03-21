@@ -13,6 +13,7 @@ final class SearchViewModel {
     @Published var searchText = ""
     @Published var isLoading = false
     @Published var forecastModel: ForecastModel?
+    @Published var showError = false
 
     private var weather: Weather?
     private var city: City?
@@ -37,6 +38,7 @@ final class SearchViewModel {
                 fetchForecast()
             } catch {
                 isLoading = false
+                showError = true
                 print("Error while fetching geocode info for seacrh term \(searchText):\n \(error.localizedDescription)")
             }
         }
@@ -49,17 +51,20 @@ final class SearchViewModel {
 
                 let lat = String(city.latitude)
                 let lon = String(city.longitude)
-
-                UserDefaults.standard.set(lat, forKey: UserDefaultKeys.latitude)
-                UserDefaults.standard.set(lon, forKey: UserDefaultKeys.longitude)
                 
                 isLoading = true
                 
                 let weatherData = try await weatherAPIHelper.fetchForecast(lat: lat, lon: lon)
+                
+                UserDefaults.standard.set(lat, forKey: UserDefaultKeys.latitude)
+                UserDefaults.standard.set(lon, forKey: UserDefaultKeys.longitude)
+                
                 isLoading = false
+                
                 extractForecastData(from: weatherData)
             } catch {
                 isLoading = false
+                showError = true
                 print("Error while fetching forecast for \(String(describing: city?.name)): \(error.localizedDescription)")
             }
         }
@@ -74,7 +79,9 @@ final class SearchViewModel {
                 extractForecastData(from: weatherData)
             } catch {
                 isLoading = false
+                showError = true
                 print("Error while fetching forecast for lat: \(lat), lon: \(lon) \n \(error.localizedDescription)")
+                
             }
         }
     }

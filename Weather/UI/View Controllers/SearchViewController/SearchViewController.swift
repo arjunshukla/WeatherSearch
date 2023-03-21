@@ -35,6 +35,7 @@ class SearchViewController: UIViewController, Storyboarded {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSpinnerBinding()
+        setupErrorAlertBinding()
         setupSearchBarBinding()
         setupForecastBinding()
         setupLocationService()
@@ -46,6 +47,20 @@ class SearchViewController: UIViewController, Storyboarded {
                 DispatchQueue.main.async {
                     self?.loadingView.isHidden = !isLoading
                     isLoading ? self?.spinner.startAnimating() : self?.spinner.stopAnimating()
+                }
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func setupErrorAlertBinding() {
+        viewModel.$showError
+            .sink { [weak self] showError in
+                guard showError,
+                      let self = self
+                else { return }
+
+                DispatchQueue.main.async {
+                    self.showErrorAlert()
                 }
             }
             .store(in: &cancellables)
@@ -84,9 +99,8 @@ class SearchViewController: UIViewController, Storyboarded {
     }
     
     private func updateForecastView(forecastModel: ForecastModel) {
-        forecastView = ForecastView(model: forecastModel)
-        hostingController?.rootView = forecastView!
-//        hostingController = UIHostingController(rootView: forecastView!)
+//        forecastView = ForecastView(model: forecastModel)
+        hostingController?.rootView.model = forecastModel//View!
     }
     
     private func setupForecastView(forecastModel: ForecastModel) {
@@ -117,6 +131,26 @@ class SearchViewController: UIViewController, Storyboarded {
             locationManager.startUpdatingLocation()
         }
     }
+    
+    private func showErrorAlert() {
+        let alert = UIAlertController(title: "Location Not Found", message: "Please check the location and try again.", preferredStyle: .alert)
+
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+
+        self.present(alert, animated: true, completion: { [weak self] in
+            self?.viewModel.showError = false
+        })
+    }
+    
+    @IBAction private func onCurrentLocationButtonTap(_ sender: Any) {
+        UserDefaults.standard.removeObject(forKey: UserDefaultKeys.longitude)
+        
+        UserDefaults.standard.removeObject(forKey: UserDefaultKeys.latitude)
+        
+        userLocation = nil
+        setupLocationService()
+    }
+    
 }
 
 extension SearchViewController: UISearchBarDelegate {
