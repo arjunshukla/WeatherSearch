@@ -25,7 +25,6 @@
 		F27C23C52845317E00A4DA41 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F27C23C32845317E00A4DA41 /* Main.storyboard */; };
 		F27C23C72845324800A4DA41 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27C23C62845324800A4DA41 /* API.swift */; };
 		F27C23C9284532D600A4DA41 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27C23C8284532D600A4DA41 /* Cache.swift */; };
-		F27C23DA2845DD4400A4DA41 /* ListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27C23D92845DD4400A4DA41 /* ListViewModelTests.swift */; };
 		F28F9B0F29C635670080F7B3 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28F9B0E29C635670080F7B3 /* SearchViewController.swift */; };
 		F28F9B1129C635940080F7B3 /* SearchViewControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28F9B1029C635940080F7B3 /* SearchViewControllerViewModel.swift */; };
 		F28F9B1329C635A40080F7B3 /* SearchViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F28F9B1229C635A40080F7B3 /* SearchViewController.storyboard */; };
@@ -77,7 +76,6 @@
 		F27C23C42845317E00A4DA41 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F27C23C62845324800A4DA41 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		F27C23C8284532D600A4DA41 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
-		F27C23D92845DD4400A4DA41 /* ListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModelTests.swift; sourceTree = "<group>"; };
 		F28F9B0E29C635670080F7B3 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		F28F9B1029C635940080F7B3 /* SearchViewControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewControllerViewModel.swift; sourceTree = "<group>"; };
 		F28F9B1229C635A40080F7B3 /* SearchViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchViewController.storyboard; sourceTree = "<group>"; };
@@ -162,7 +160,6 @@
 			isa = PBXGroup;
 			children = (
 				F254EE7D2844D0DE00D6E671 /* WeatherTests.swift */,
-				F27C23D92845DD4400A4DA41 /* ListViewModelTests.swift */,
 			);
 			path = WeatherTests;
 			sourceTree = "<group>";
@@ -451,7 +448,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F27C23DA2845DD4400A4DA41 /* ListViewModelTests.swift in Sources */,
 				F254EE7E2844D0DE00D6E671 /* WeatherTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

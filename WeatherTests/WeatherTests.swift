@@ -8,6 +8,10 @@
 import XCTest
 @testable import Weather
 
+/// Can add unit tests for:
+/// 1. API url builder
+/// 2. SearchViewModel
+
 class WeatherTests: XCTestCase {
 
     override func setUpWithError() throws {
