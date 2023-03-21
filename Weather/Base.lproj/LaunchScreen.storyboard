@@ -16,18 +16,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WEATHER" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7kz-i4-70f">
-                                <rect key="frame" x="124" y="427.5" width="166.5" height="41"/>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="34"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="bjt-Xa-ibm">
+                                <rect key="frame" x="30" y="302.5" width="354" height="291"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no_forecast" translatesAutoresizingMaskIntoConstraints="NO" id="1KE-fJ-IwZ">
+                                        <rect key="frame" x="77" y="0.0" width="200" height="200"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="6F2-Fq-551"/>
+                                            <constraint firstAttribute="width" constant="200" id="lwX-kF-X0S"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather Finder" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7kz-i4-70f">
+                                        <rect key="frame" x="51" y="250" width="252" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="34"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="7kz-i4-70f" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="F49-ec-fnb"/>
-                            <constraint firstItem="7kz-i4-70f" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="oJG-mb-1A5"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="bjt-Xa-ibm" secondAttribute="trailing" constant="30" id="aGU-c1-U7C"/>
+                            <constraint firstItem="bjt-Xa-ibm" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="kYW-pu-Wdj"/>
+                            <constraint firstItem="bjt-Xa-ibm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="rk8-Gp-IwL"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -37,6 +50,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="no_forecast" width="30" height="30"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
