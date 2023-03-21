@@ -8,6 +8,7 @@
 import Foundation
 
 extension String {
+    /// Formats a string in sentense case, capitalizing only the first letter of first word
     var sentenceCased: String {
         guard !self.isEmpty else {
             return ""

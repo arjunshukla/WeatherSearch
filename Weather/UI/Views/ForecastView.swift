@@ -22,22 +22,6 @@ struct DisplayWeatherModel {
     var forecastIconUrl: URL?
 }
 
-//class ForecastModel: ObservableObject {
-//    @Published var showForecast: Bool
-//
-//    @Published var weatherModel: DisplayWeatherModel
-//
-//    @Published var temperatureModel: DisplayTemperatureModel
-//
-//    init(showForecast: Bool,
-//         weatherModel: DisplayWeatherModel,
-//         temperatureModel: DisplayTemperatureModel) {
-//        self.showForecast = showForecast
-//        self.weatherModel = weatherModel
-//        self.temperatureModel = temperatureModel
-//    }
-//}
-
 struct ForecastModel {
     var showForecast: Bool
     var weatherModel: DisplayWeatherModel

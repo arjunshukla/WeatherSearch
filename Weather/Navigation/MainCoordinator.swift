@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// Main coordinator for initiating the first screen in the app
 class MainCoordinator: Coordinator {
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController

@@ -9,11 +9,14 @@ import Foundation
 import UIKit
 import SwiftUI
 
+/// UserDefault key constants
 struct UserDefaultKeys {
     static let latitude = "latitude"
     static let longitude = "longitude"
 }
 
+
+/// Cache for holding images and repeat urls in memory for faster lookup
 class Cache {
     static var imageCache = NSCache<AnyObject, AnyObject>()
     static var geocodeCache = NSCache<AnyObject, AnyObject>()

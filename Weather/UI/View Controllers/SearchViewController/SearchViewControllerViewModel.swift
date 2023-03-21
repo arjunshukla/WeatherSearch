@@ -9,12 +9,14 @@ import Foundation
 import Combine
 
 final class SearchViewModel {
-    
+
+    // MARK: Published properties
     @Published var searchText = ""
     @Published var isLoading = false
     @Published var forecastModel: ForecastModel?
     @Published var showError = false
 
+    // MARK: Private properties
     private var weather: Weather?
     private var city: City?
     private var cityName: String?
@@ -25,10 +27,13 @@ final class SearchViewModel {
         self.weatherAPIHelper = apiService as! WeatherAPIHelper
     }
     
+    // MARK: Functions
+    
+    /// Looks up city coordinates to fetch weather info
     func executeSearch() {
         guard !searchText.isEmpty else { return }
         // Perform the search with the given search text
-        print("Searching for: \(searchText)")
+        print("⚡️ Searching for: \(searchText)")
         Task {
             do {
                 isLoading = true
@@ -39,7 +44,7 @@ final class SearchViewModel {
             } catch {
                 isLoading = false
                 showError = true
-                print("Error while fetching geocode info for seacrh term \(searchText):\n \(error.localizedDescription)")
+                print("⚡️ Error while fetching geocode info for seacrh term \(searchText):\n \(error.localizedDescription)")
             }
         }
     }
@@ -65,7 +70,7 @@ final class SearchViewModel {
             } catch {
                 isLoading = false
                 showError = true
-                print("Error while fetching forecast for \(String(describing: city?.name)): \(error.localizedDescription)")
+                print("⚡️ Error while fetching forecast for \(String(describing: city?.name)): \(error.localizedDescription)")
             }
         }
     }
@@ -80,7 +85,7 @@ final class SearchViewModel {
             } catch {
                 isLoading = false
                 showError = true
-                print("Error while fetching forecast for lat: \(lat), lon: \(lon) \n \(error.localizedDescription)")
+                print("⚡️ Error while fetching forecast for lat: \(lat), lon: \(lon) \n \(error.localizedDescription)")
                 
             }
         }
@@ -101,7 +106,7 @@ final class SearchViewModel {
               let weather = weather,
               let temperature = temperatureData
         else {
-            print("Missing key data")
+            print("⚡️ Missing key data")
             return
         }
         
@@ -119,6 +124,6 @@ final class SearchViewModel {
         
         forecastModel = ForecastModel(showForecast: true, weatherModel: weatherModel, temperatureModel: temperatureModel)
 
-        print("New forecastModel: ", String(describing: forecastModel))
+//        print("⚡️ New forecastModel: ", String(describing: forecastModel))
     }
 }

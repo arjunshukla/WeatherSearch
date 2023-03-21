@@ -13,6 +13,7 @@ import UIKit
 
 class SearchViewController: UIViewController, Storyboarded {
     
+    // MARK: Outlet properties
     @IBOutlet private weak var citySearchBar: UISearchBar!
     
     @IBOutlet private weak var forecastStackView: UIStackView!
@@ -21,6 +22,7 @@ class SearchViewController: UIViewController, Storyboarded {
     
     @IBOutlet private weak var spinner: UIActivityIndicatorView!
     
+    // MARK: Private properties
     private var hostingController: UIHostingController<ForecastView>?
     private var forecastView: ForecastView?
 
@@ -32,6 +34,7 @@ class SearchViewController: UIViewController, Storyboarded {
     
     private var userLocation: CLLocationCoordinate2D?
     
+    // MARK: View lifecycle funcs
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSpinnerBinding()
@@ -41,6 +44,7 @@ class SearchViewController: UIViewController, Storyboarded {
         setupLocationService()
     }
     
+    // MARK: Private funcs
     private func setupSpinnerBinding() {
         viewModel.$isLoading
             .sink { [weak self] isLoading in
@@ -78,7 +82,7 @@ class SearchViewController: UIViewController, Storyboarded {
         citySearchBar.clipsToBounds = true
         // Bind the view model's searchText property to the search bar
         viewModel.$searchText
-            .debounce(for: .milliseconds(700), scheduler: RunLoop.main)
+            .debounce(for: .milliseconds(1000), scheduler: RunLoop.main)
             .sink { [weak self] searchText in
                 self?.viewModel.executeSearch()
             }
@@ -99,8 +103,7 @@ class SearchViewController: UIViewController, Storyboarded {
     }
     
     private func updateForecastView(forecastModel: ForecastModel) {
-//        forecastView = ForecastView(model: forecastModel)
-        hostingController?.rootView.model = forecastModel//View!
+        hostingController?.rootView.model = forecastModel
     }
     
     private func setupForecastView(forecastModel: ForecastModel) {
@@ -142,6 +145,8 @@ class SearchViewController: UIViewController, Storyboarded {
         })
     }
     
+    /// Clears last searched location and looks up weather for user's current location.
+    /// - Parameter sender: sender
     @IBAction private func onCurrentLocationButtonTap(_ sender: Any) {
         UserDefaults.standard.removeObject(forKey: UserDefaultKeys.longitude)
         
@@ -153,8 +158,8 @@ class SearchViewController: UIViewController, Storyboarded {
     
 }
 
+// MARK: Extensions
 extension SearchViewController: UISearchBarDelegate {
-
     func searchBar(_ searchBar: UISearchBar,
                    textDidChange searchText: String) {
         viewModel.searchText = searchText
@@ -167,12 +172,11 @@ extension SearchViewController: CLLocationManagerDelegate {
         userLocation == nil else { return }
         
         userLocation = location.coordinate
-        print("Latitude: \(location.coordinate.latitude)")
-        print("Longitude: \(location.coordinate.longitude)")
+        print("⚡️ Latitude: \(location.coordinate.latitude)")
+        print("⚡️ Longitude: \(location.coordinate.longitude)")
         locationManager.stopUpdatingLocation()
         
         // Fetch weather forecast for user's location
-//        Ad use defaukst here
         
         if let lat = UserDefaults.standard.string(forKey: UserDefaultKeys.latitude),
            let lon = UserDefaults.standard.string(forKey: UserDefaultKeys.longitude) {

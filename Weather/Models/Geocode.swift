@@ -6,7 +6,7 @@
 //
 
 import Foundation
-/*
+/* Model for Geocode api data
  [
      {
          "name": "Cupertino",
@@ -22,7 +22,7 @@ import Foundation
  ]
  */
 
-struct City: Codable {
+struct City: Decodable {
     let name: String
     let latitude: Double
     let longitude: Double

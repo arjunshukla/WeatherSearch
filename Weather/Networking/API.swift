@@ -7,8 +7,8 @@
 
 import Foundation
 
+/// Base class for defining API endpoints to call and execute all the and data tasks through a generic func
 class API {
-    typealias completion = (Data?, URLResponse?, Error?) -> Void
     private static let apiKey = "4c79191af041154a917fc3ec8d3de430"
     private static let baseWeatherUrlString = "https://api.openweathermap.org/data/2.5/weather"
     private static let baseGeocodeUrlString = "http://api.openweathermap.org/geo/1.0/direct"
@@ -83,6 +83,8 @@ class API {
         return URL(string: iconUrl)
     }
     
+    /// Asynchronously fetches data from the provided url returning the passed in decodable type
+    /// - Returns: Passed in Decodable conforming type
     static func fetchData<T: Decodable>(url: URL) async throws -> T {
         let (data, _) = try await URLSession.shared.data(from: url)
         return try JSONDecoder().decode(T.self, from: data)

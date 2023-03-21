@@ -6,7 +6,7 @@
 //
 
 import Foundation
-/*
+/* Models for Weather forecast api data
  {
      "coord": {
          "lon": -122.0317,
@@ -52,7 +52,7 @@ import Foundation
  }
  */
 
-struct WeatherData: Codable {
+struct WeatherData: Decodable {
     let coord: Coord
     let weather: [Weather]
     let base: String
@@ -68,19 +68,19 @@ struct WeatherData: Codable {
     let cod: Int
 }
 
-struct Coord: Codable {
+struct Coord: Decodable {
     let lon: Double
     let lat: Double
 }
 
-struct Weather: Codable {
+struct Weather: Decodable {
     let id: Int
     let main: String
     let description: String
     let icon: String
 }
 
-struct Main: Codable {
+struct Main: Decodable {
     let temp: Double
     let feels_like: Double
     let temp_min: Double
@@ -89,16 +89,16 @@ struct Main: Codable {
     let humidity: Int
 }
 
-struct Wind: Codable {
+struct Wind: Decodable {
     let speed: Double
     let deg: Int
 }
 
-struct Clouds: Codable {
+struct Clouds: Decodable {
     let all: Int
 }
 
-struct Sys: Codable {
+struct Sys: Decodable {
     let type: Int
     let id: Int
     let country: String

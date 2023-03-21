@@ -8,6 +8,7 @@
 import Foundation
 
 extension Double {
+    /// Helps format Double to string representing temperature string in degree Fahrenheit
     var imperialTemperature: String {
         String(format: "%.0f\u{00B0} F", self)
     }
